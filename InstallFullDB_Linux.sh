@@ -1,10 +1,3 @@
-
-Paste2
-
-    Create Paste
-    Followup Paste
-    QR
-
 #!/bin/sh
 
 ####################################################################################################
@@ -36,7 +29,7 @@ MANGOS_DBPASS=""
 MYSQL=""
 CORE_PATH=""
 
-create_config() {			               #  function creat_config() {
+create_config() {
 # Re(create) config file
 cat >  $CONFIG_FILE << EOF
 ####################################################################################################
