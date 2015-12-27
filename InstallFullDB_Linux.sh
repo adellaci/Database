@@ -1,3 +1,10 @@
+
+Paste2
+
+    Create Paste
+    Followup Paste
+    QR
+
 #!/bin/sh
 
 ####################################################################################################
@@ -16,8 +23,8 @@
 
 
 #internal use
-SCRIPT_FILE="./InstallFullDB_Linux.sh"           #  changed to reference the corrected script
-CONFIG_FILE="./InstallFullDB.config"             #  changed to reference the .config file
+SCRIPT_FILE="./InstallFullDB_Linux.sh"     #  changed to reference the corrected script
+CONFIG_FILE="./InstallFullDB.config"       #  changed to reference the .config file
 # testing only
 ADDITIONAL_PATH=""
 
@@ -29,7 +36,7 @@ MANGOS_DBPASS=""
 MYSQL=""
 CORE_PATH=""
 
-create_config() {			         #  function creat_config() {
+create_config() {			               #  function creat_config() {
 # Re(create) config file
 cat >  $CONFIG_FILE << EOF
 ####################################################################################################
@@ -73,7 +80,7 @@ MYSQL="mysql"
 EOF
 }
 
-display_help() {                                 #  function display_help() {
+display_help() {                               
 echo
 echo "Welcome to the UDB helper $SCRIPT_FILE"
 echo
@@ -102,65 +109,48 @@ echo
 echo "ATTENTION: Your database $MANGOS_DBNAME will be reset to UDB!"
 echo "Please bring your repositories up-to-date!"
 echo "Press CTRL+C to exit"
-# show a mini progress bar                       # Commented out
-#for i in {1..19}                                # Commented out
-#do                                              # Commented out
-# echo -ne .                                     # Commented out
-# sleep 1                                        # Commented out
-#done                                            # Commented out
-#echo .                                          # Commented out
+# show a mini progress bar
+#for i in {1..19}
+#do
+# echo -ne .
+# sleep 1
+#done
+#echo .
 
 ## Full
-echo "Process Full_DB ${ADDITIONAL_PATH}Current_Release/Full_DB/UDB_0.12.2_mangos_11792_SD2_2279.sql"      # Show exact location and file being processed
+echo
+echo "Process Full_UDB 0.12.2 ..."
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Full_DB/UDB_0.12.2_mangos_11792_SD2_2279.sql
-echo "Test1"
-# [[ $? != 0 ]] && exit 1                                                                                  # Commented out
-echo $?
+echo
 
 # 403
-echo "Process Corepatch ${ADDITIONAL_PATH}Current_Release/Updates/403_corepatch_mangos_11793_to_11840.sql" # Show exact location and file being processed
+echo "Process Updatepack 403"
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/403_corepatch_mangos_11793_to_11840.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
-echo "Process Updatepapack ${ADDITIONAL_PATH}Current_Release/Updates/403_updatepack_mangos.sql"            # Show exact location and file being processed
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/403_updatepack_mangos.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
 
 ## 404
-echo "Process Corepatch ${ADDITIONAL_PATH}Current_Release/Updates/404_corepatch_mangos_11841_to_11928.sql" # Show exact location and file being processed
+echo "Process Updatepack 404"
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/404_corepatch_mangos_11841_to_11928.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
-echo "Process Updatepapack ${ADDITIONAL_PATH}Current_Release/Updates/404_updatepack_mangos.sql"            # Show exact location and file being processed
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/404_updatepack_mangos.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out 
 
 ## 405
-echo "Process Corepatch ${ADDITIONAL_PATH}Current_Release/Updates/405_corepatch_mangos_11929_to_12111.sql" # Show exact location and file being processed
+echo "Process Updatepack 405"
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/405_corepatch_mangos_11929_to_12111.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
-echo "Process Updatepapack ${ADDITIONAL_PATH}Current_Release/Updates/405_updatepack_mangos.sql"            # Show exact location and file being processed
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/405_updatepack_mangos.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
 
 ## 406
-echo "Process Corepatch ${ADDITIONAL_PATH}Current_Release/Updates/406_corepatch_mangos_12112_to_12444.sql" # Show exact location and file being processed
+echo "Process Updatepack 406"
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/406_corepatch_mangos_12112_to_12444.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
-echo "Process Updatepapack ${ADDITIONAL_PATH}Current_Release/Updates/406_updatepack_mangos.sql"            # Show exact location and file being processed
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/406_updatepack_mangos.sql
-#[[ $? != 0 ]] && exit 1                                                                                   #Commented out
 
 ## 407
-echo "Process Corepatch ${ADDITIONAL_PATH}Current_Release/Updates/407_corepatch_mangos_12445_to_12670.sql" # Show exact location and file being processed
+echo "Process Updatepack 407"
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/407_corepatch_mangos_12445_to_12670.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
-echo "Process Updatepack ${ADDITIONAL_PATH}Current_Release/Updates/407_updatepack_mangos.sql"              # Show exact location and file being processed
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/407_updatepack_mangos.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Comment out
 
 ## 408
-echo "Process Updatepack ${ADDITIONAL_PATH}Current_Release/Updates/408_updatepack_mangos.sql"              # Show exact location and file being processed
+echo "Process Updatepack 408"
 $MYSQL_MANGOSDB_CMD < ${ADDITIONAL_PATH}Current_Release/Updates/408_updatepack_mangos.sql
-#[[ $? != 0 ]] && exit 1                                                                                   # Commented out
 
 
 ## Change these settings with new updatepacks
@@ -175,7 +165,6 @@ do
   CUR_REV=`basename "$f" | sed 's/^\([0-9]*\)_.*/\1/' `
   echo "Applying Update $CUR_REV"
   $MYSQL_MANGOSDB_CMD < "$f"
-#  [[ $? != 0 ]] && exit 1                                                                                 # Commented out
 done
 
 #
@@ -213,7 +202,6 @@ then
           # found a newer core update file
           echo "Append core update `basename "$f"` to database $MANGOS_DBNAME"
           $MYSQL_MANGOSDB_CMD < "$f"
-#          [[ $? != 0 ]] && exit 1                                                                        # Commented out
         fi
       done
     fi
@@ -228,7 +216,6 @@ then
       # found a newer core update file
       echo "Append core update `basename "$f"` to database $MANGOS_DBNAME"
       $MYSQL_MANGOSDB_CMD < "$f"
-#      [[ $? != 0 ]] && exit 1                                                                             # Commented out
     fi
   done
   echo "All core updates applied"
@@ -242,7 +229,6 @@ then
   echo "Applying $ScriptDev2/scriptdev2.sql ..."
   echo
   $MYSQL_MANGOSDB_CMD < "${CORE_PATH}"/sql/scriptdev2/scriptdev2.sql
-#  [[ $? != 0 ]] && exit 1                                                                                 # Commented out
   echo "Recent state of ScriptDev2 applied"
 fi
 
@@ -266,12 +252,13 @@ then
   echo "Applying $ACID_PATH/acid_wotlk.sql ..."
   echo
   $MYSQL_MANGOSDB_CMD < "${ACID_PATH}"/acid_wotlk.sql
-#  [[ $? != 0 ]] && exit 1                                                                                 # Commented out
   echo "Recent state of ACID applied"
 fi
 
 echo
 echo "You have now a clean and recent UDB database loaded into $MANGOS_DBNAME"
+echo
 echo "Enjoy using UDB"
 echo
+
 
